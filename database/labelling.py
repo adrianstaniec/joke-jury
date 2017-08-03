@@ -2,10 +2,10 @@
 
 It shows user the joke and asks for new rating.
 
-Format for unlabbeled joke is:
+Format for unlabbeled joke should be:
 original_score & joke_id & joke_content
 
-Format after labelling is:
+Format after labelling will be:
 proper_label\tjoke_id\tjoke content
 """
 
@@ -13,35 +13,37 @@ import os
 import shutil
 
 
-def print_joke(content: str):
+def print_joke(content, number, score):
     print('\n'*100)
-    print('----- Joke number : ' + id + ' Joke prev. score : ' + old_score + ' -----')
+    print('----- Joke number : ' + number + ' Joke prev. score : ' + score + ' -----')
     print('')
     print(content.replace('<br>', '\n'))
 
 
-processing = True
+def main():
+    processing = True
 
-with open('polish_jokes.tsv', 'r') as fi:
-    with open('polish_jokes.temp', 'w') as fo:
-        for line in fi:
-            if ('&' in line) and processing:
-                old_score, id, content = line.split('& ')
+    with open('polish_jokes.tsv', 'r') as fi:
+        with open('polish_jokes.temp', 'w') as fo:
+            for line in fi:
+                if ('&' in line) and processing:
+                    old_score, number, content = line.split('& ')
 
-                print_joke(content)
-                score = input('What is you score [0-9,q]? ')
+                    print_joke(content, number, old_score)
+                    new_score = input('What is you new_score [0-9,q]? ')
 
-                if score in [str(n) for n in range(10)]:
-                    fo.write(score + ' \t ' + id + ' \t ' + content)
-                elif score == 'q':
-                    fo.write(line)
-                    processing = False
+                    if new_score in [str(n) for n in range(10)]:
+                        fo.write(new_score + ' \t ' + number + ' \t ' + content)
+                    elif new_score == 'q':
+                        fo.write(line)
+                        processing = False
+                    else:
+                        fo.write(line)
                 else:
                     fo.write(line)
-            else:
-                fo.write(line)
 
-os.remove('polish_jokes.tsv')
-shutil.move('polish_jokes.temp', 'polish_jokes.tsv')
+    os.remove('polish_jokes.tsv')
+    shutil.move('polish_jokes.temp', 'polish_jokes.tsv')
 
-
+if __name__ == "__main__":
+    main()
