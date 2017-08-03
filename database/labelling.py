@@ -1,3 +1,14 @@
+"""This script is for made to facilitate manual labelling process
+
+It shows user the joke and asks for new rating.
+
+Format for unlabbeled joke is:
+original_score & joke_id & joke_content
+
+Format after labelling is:
+proper_label\tjoke_id\tjoke content
+"""
+
 import os
 import shutil
 
