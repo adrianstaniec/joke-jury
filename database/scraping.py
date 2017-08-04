@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """This script allow to automatically download all the jokes from perelki.net
 and store it in a text file, one joke per line. <br> is used as newline symbol.
 
@@ -29,6 +30,7 @@ def main():
 
             with open(FILENAME, 'a') as f:
                 f.write(label + ' & ' + str(number) + ' & ' + content + '\n')
+
 
 if __name__ == "__main__":
     main()

@@ -1,5 +1,5 @@
+#!/usr/bin/env python
 """This script is for made to facilitate manual labelling process
-
 It shows user the joke and asks for new rating.
 
 Format for unlabbeled joke should be:
@@ -34,16 +34,16 @@ def main():
 
                     if new_score in [str(n) for n in range(10)]:
                         fo.write(new_score + ' \t ' + number + ' \t ' + content)
-                    elif new_score == 'q':
-                        fo.write(line)
-                        processing = False
                     else:
                         fo.write(line)
+                        if new_score == 'q':
+                            processing = False
                 else:
                     fo.write(line)
 
     os.remove('polish_jokes.tsv')
     shutil.move('polish_jokes.temp', 'polish_jokes.tsv')
+
 
 if __name__ == "__main__":
     main()
