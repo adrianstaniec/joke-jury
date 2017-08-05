@@ -1,9 +1,6 @@
 #!/usr/bin/env python
-"""This script allow to automatically download all the jokes from perelki.net
+"""This script allows to automatically download all the jokes from perelki.net
 and store it in a text file, one joke per line. <br> is used as newline symbol.
-
-Format for unlabbeled joke will be:
-score & joke_id & joke_content
 """
 
 import requests
