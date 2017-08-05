@@ -12,10 +12,11 @@ proper_label\tjoke_id\tjoke content
 import os
 import shutil
 
+BASENAME = 'jokes_pl'
 
-def print_joke(content, number, score):
+def print_joke(content, joke_id, score):
     print('\n'*100)
-    print('----- Joke number : ' + number + ' Joke prev. score : ' + score + ' -----')
+    print('----- Joke joke_id : ' + joke_id + ' Joke prev. score : ' + score + ' -----')
     print('')
     print(content.replace('<br>', '\n'))
 
@@ -23,17 +24,17 @@ def print_joke(content, number, score):
 def main():
     processing = True
 
-    with open('polish_jokes.tsv', 'r') as fi:
-        with open('polish_jokes.temp', 'w') as fo:
+    with open(BASENAME + '.tsv', 'r') as fi:
+        with open(BASENAME + '.temp', 'w') as fo:
             for line in fi:
                 if ('&' in line) and processing:
-                    old_score, number, content = line.split('& ')
+                    old_score, joke_id, content = line.split('& ')
 
-                    print_joke(content, number, old_score)
+                    print_joke(content, joke_id, old_score)
                     new_score = input('What is you new_score [0-9,q]? ')
 
                     if new_score in [str(n) for n in range(10)]:
-                        fo.write(new_score + ' \t ' + number + ' \t ' + content)
+                        fo.write(new_score + ' \t ' + joke_id + ' \t ' + content)
                     else:
                         fo.write(line)
                         if new_score == 'q':
@@ -41,8 +42,8 @@ def main():
                 else:
                     fo.write(line)
 
-    os.remove('polish_jokes.tsv')
-    shutil.move('polish_jokes.temp', 'polish_jokes.tsv')
+    os.remove(BASENAME + '.tsv')
+    shutil.move(BASENAME + '.temp', BASENAME + '.tsv')
 
 
 if __name__ == "__main__":
