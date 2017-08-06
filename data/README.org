@@ -1,11 +1,21 @@
 * Datasets
 
-** Polish jokes
+Datasets are held in tab-separated-vale files, one joke per line.
 
-No need to run =scraping_pl.py=, the result is already commited as =jokes_pl.tsv=.
-
-Just run =labeling_pl.py= to continue to rate the jokes manually.
+They were created with scraping scripts and some manual cleanup.
 
 ** English jokes
 
-No need to run =scraping_en.py=, the result is already commited as =jokes_en.tsv=.
+Two datasets available.
+
+** Polish jokes
+
+The dataset is commited, but suffers from bad quality labels, so manual rating is required.
+
+Just run the script below to read and rate the unrated jokes yourself.
+
+#+BEGIN_SRC shell
+./labeling_pl.py
+#+END_SRC
+
+Don't forget to commit your work. ;)
