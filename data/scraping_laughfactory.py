@@ -7,7 +7,7 @@ import requests
 import bs4
 
 
-FILENAME = 'jokes_en.tsv'
+FILENAME = 'jokes_laughfactory.tsv'
 
 
 def main():
